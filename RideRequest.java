@@ -1,7 +1,7 @@
 
 public class RideRequest {
 
-    // --- Attributes ---
+    // Attributes
     private int rideId;
     private String passengerName;
     private String pickupLocation;
@@ -17,7 +17,7 @@ public class RideRequest {
         this.fare = fare;
     }
 
-    // --- Getters and Setters ---
+    // information hiding by Encapsulation
 
     public int getRideId() {
         return rideId;
@@ -59,8 +59,7 @@ public class RideRequest {
         this.fare = fare;
     }
 
-    // --- Display Method ---
-   
+    //  Display Method
     public void display() {
         System.out.println("------------------------------------");
         System.out.println("Ride ID: " + rideId); 

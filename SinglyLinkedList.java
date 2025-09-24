@@ -1,7 +1,7 @@
 
 public class SinglyLinkedList {
 
-    // --- Node Inner Class ---
+    // Node - the Inner Class
     private static class Node {
         RideRequest data;
         Node next;  
@@ -18,46 +18,50 @@ public class SinglyLinkedList {
         this.head = null; 
     }
 
-    // --- Part B: Data Structure Methods ---
+    //Data Structure Methods
 
     public void insertAtEnd(RideRequest data) {
-        Node newNode = new Node(data);
+        Node node = new Node(data);
         if (head == null) {
-            head = newNode; 
+            head = node; 
         } else {
             Node current = head;
             while (current.next != null) { 
                 current = current.next;
             }
-            current.next = newNode; 
+            current.next = node; 
         }
     }
 
     
-     // Finds and removes a ride request by its unique ID.
+     //Remove a ride request ID.
     
     public boolean deleteById(int rideId) {
-        if (head == null) return false; 
-        
-        if (head.data.getRideId() == rideId) {
-            head = head.next;
-            return true;
-        }
-
-        Node current = head;
-        while (current.next != null && current.next.data.getRideId() != rideId) {
-            current = current.next;
-        }
-
-        if (current.next != null) { 
-            current.next = current.next.next; 
-        }
-        return false; 
+    if (head == null) {
+        return false;
     }
 
+    if (head.data.getRideId() == rideId) {
+        head = head.next;
+        return true;
+    }
+
+    Node current = head;
+    while (current.next != null && current.next.data.getRideId() != rideId) {
+        current = current.next;
+    }
+
+    if (current.next != null) {
+        current.next = current.next.next;
+        return true; 
+    }
+
+    return false; 
+}
+
    
-     // Searches for a ride request by its ID.
-     
+     // Searches ride requests by ID.
+    
     public RideRequest searchById(int rideId) {
         Node current = head;
         while (current != null) {
@@ -75,7 +79,8 @@ public class SinglyLinkedList {
             System.out.println("The list of ride requests is empty.");
             return;
         }
-        System.out.println("\n--- All Ride Requests ---");
+
+        System.out.println("\n All Ride Requests ");
         Node current = head;
         while (current != null) {
             current.data.display();
@@ -83,7 +88,7 @@ public class SinglyLinkedList {
         }
     }
 
-    // --- Part C: Sorting Algorithm ---
+    // Sorting Algorithm
 
     public void sortRidesByFare() {
         if (head == null) {
@@ -105,7 +110,7 @@ public class SinglyLinkedList {
             current = current.next;
         }
 
-        //  Perform Insertion Sort on the array
+        //  Insertion Sort on the array
         for (int i = 1; i < size; i++) {
             RideRequest key = ridesArray[i];
             int j = i - 1;
@@ -117,21 +122,20 @@ public class SinglyLinkedList {
             ridesArray[j + 1] = key;
         }
 
-        // 3. sorted array
-        System.out.println("\n--- Ride Requests Sorted by Fare (Low to High) ---");
+        // orted array
+        System.out.println("\n Ride Requests Sorted by Fare (Low to High)");
         for (RideRequest ride : ridesArray) {
             ride.display();
         }
     }
 
-    // --- Part D: Recursion ---
-
+    // Recursion
     public void printInReverse() {
         if (head == null) {
             System.out.println("The list is empty.");
             return;
         }
-        System.out.println("\n--- Ride Requests in Reverse Order ---");
+        System.out.println("\n Ride Requests in Reverse Order ");
         printReverseRecursive(head);
     }
 
@@ -142,12 +146,11 @@ public class SinglyLinkedList {
         }
 
         printReverseRecursive(node.next);
-        //Print the current node's data AFTER the recursive call has returned.
         node.data.display();
     }
 
     
-     //  A recursive function to calculate the total fare of all rides.
+     // calculate total fares of all rides using recursive function.
      
     public float calculateTotalFare() {
         return calculateTotalFareRecursive(head);
